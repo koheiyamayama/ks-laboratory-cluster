@@ -1,0 +1,25 @@
+master_nodes:
+  hosts:
+    192.168.1.9:
+  vars:
+    ansible_user: kohei
+    ansible_ssh_private_key_file: ~/.ssh/id_ed25519    
+worker_nodes:
+  hosts:
+    192.168.1.10:
+      node_ip: 192.168.1.10
+    192.168.1.11:
+      node_ip: 192.168.1.11
+    192.168.1.12:
+      node_ip: 192.168.1.12
+    192.168.1.13:
+      node_ip: 192.168.1.13
+    192.168.1.14:
+      node_ip: 192.168.1.14
+    192.168.1.15:
+      node_ip: 192.168.1.15
+    192.168.1.16:
+      node_ip: 192.168.1.16
+  vars:
+    ansible_user: kohei
+    ansible_ssh_private_key_file: ~/.ssh/id_ed25519

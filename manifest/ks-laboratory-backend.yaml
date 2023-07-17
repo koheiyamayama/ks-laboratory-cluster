@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ks-laboratory-backend-deployment
+  labels:
+    app: ks-laboratory-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ks-laboratory-backend
+  template:
+    metadata:
+      labels:
+        app: ks-laboratory-backend
+    spec:
+      containers:
+      - name: ks-laboratory-backend
+        image: ghcr.io/koheiyamayama/ks-laboratory-backend:fd006e86a31e1f44e34c0c4ba7c24aeda3c48c03
+        ports:
+        - containerPort: 8080
+        env:
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql
+                key: MYSQL_ROOT_PASSWORD
+          - name: DATABASE_HOSTNAME
+            value: mysql
+      imagePullSecrets:
+        - name: ghcr-packages-for-ks-laboratory-backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ks-laboratory-backend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: ks-laboratory-backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

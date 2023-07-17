@@ -1,0 +1,1 @@
+sudo kubeadm join 192.168.1.9:6443 --token 1dml8a.nr8ntjt6padizioz --discovery-token-ca-cert-hash sha256:250d9f11fc00216ff0a49eecd092eb2d875d01f7d28c5161dec17ad3a0b57399
